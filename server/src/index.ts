@@ -1,15 +1,13 @@
-import express, { Express, Request, Response } from 'express';
-import dotenv from 'dotenv';
+import { server } from './app';
+import { mongoDb } from './db';
 
-dotenv.config();
+const start = async (): Promise<void> => {
+  try {
+    await mongoDb.connect();
+    server.start();
+  } catch (err) {
+    console.error(err);
+  }
+};
 
-const app: Express = express();
-const port = process.env.PORT;
-
-app.get('/', (req: Request, res: Response) => {
-  res.send('Express + @777TypeScript Server !');
-});
-
-app.listen(port, () => {
-  console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
-});
+start();
