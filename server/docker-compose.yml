@@ -8,7 +8,6 @@ services:
   mongodb:
     image: mongo:latest
     container_name: mongodb
-    # restart: unless-stopped
     # env_file:
     #   - "../server/.env"
     restart: always
@@ -16,8 +15,6 @@ services:
       MONGO_INITDB_ROOT_USERNAME: ${DB_USER_NAME}
       MONGO_INITDB_ROOT_PASSWORD: ${DB_PASSWORD}
       MONGO_INITDB_DATABASE: ${DB_NAME}
-      MONGO_USER: ${DB_USER_NAME}
-      MONGO_PASSWORD: ${DB_PASSWORD}
     ports:
       - ${DB_PORT}:27017
     volumes:

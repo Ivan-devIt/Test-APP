@@ -9,7 +9,9 @@
     "build": "tsc",
     "watch": "tsc -w",
     "lint": "eslint src/**/*.ts --fix",
-    "mongo:clean": "npm run mongo:down && docker volume rm server_mongo-volume"
+    "mongo:up": "docker compose up -d",
+    "mongo:down": "docker compose down",
+    "mongo:clean": "npm run mongo:down && docker volume rm server_data-mongo"
   },
   "keywords": [],
   "author": "Ivan Oliinyk",
