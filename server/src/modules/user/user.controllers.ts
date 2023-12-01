@@ -1,21 +1,25 @@
 import { Response, Request } from 'express';
 import { I_User } from './user.types';
 import User from './user.model';
-import UserService from './user.service';
+import { userService } from './user.service';
 
 class UserController {
-  async getUsers() {
-    const users = await UserService.getUsers;
+  async getUsers(req: Request, res: Response) {
+    console.log('getUsers==');
+
+    const users = await userService.getUsers();
+
+    console.log('users==', users);
+
+    res.send(users);
+  }
+
+  async createUser(req: Request, res: Response) {
+    console.log('createUser==');
+    const createdUser = await userService.createUser();
+
+    res.send(createdUser);
   }
 }
 
-// const getUser = async (req: Request, res: Response): Promise<void> => {
-//   try {
-
-//     res.status(200).json({ users });
-//   } catch (error) {
-//     throw error;
-//   }
-// };
-
-// export { getUser };
+export const userController = new UserController();

@@ -1,6 +1,8 @@
-import express, { Express, Request, Response } from 'express';
+import express, { Express } from 'express';
+import cors from 'cors';
 import { json } from 'body-parser';
 import { config } from './utils';
+import { router_v1 } from './routes';
 
 const { PORT, HOST, PROTOCOL } = config;
 
@@ -8,9 +10,12 @@ const app: Express = express();
 
 app.use(json());
 
-app.get('/', (req: Request, res: Response) => {
-  res.send('Express + @777TypeScript Server !');
-});
+// enable cors
+app.use(cors());
+app.options('*', cors());
+
+// v1 api routes
+app.use('/api/v1', router_v1);
 
 export const server = {
   start: async (): Promise<void> => {
