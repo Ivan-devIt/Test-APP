@@ -4,12 +4,11 @@ import { E_NodeEnvVariants, E_Protocol } from '../types';
 
 const envVarsSchema = Joi.object()
   .keys({
-    //production or development
+    // SERVER
     NODE_ENV: Joi.string()
       .valid(E_NodeEnvVariants.production, E_NodeEnvVariants.development)
       .required()
       .description('Mode for starting the server'),
-    // SERVER
     PORT: Joi.number()
       .default(5000)
       .description('The port on which the server will start'),
