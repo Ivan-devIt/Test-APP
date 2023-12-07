@@ -1,5 +1,5 @@
 import { server } from './app';
-import { mongoDb } from './db';
+import { mongoDb } from './db/mongdb';
 import { logger } from './modules/logger';
 
 const start = async (): Promise<void> => {

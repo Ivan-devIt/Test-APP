@@ -1,7 +1,7 @@
 import express, { Express } from 'express';
 import cors from 'cors';
 import { json } from 'body-parser';
-import { config } from './utils';
+import { config } from './config';
 import { logger } from './modules/logger/logger';
 import { router_v1 } from './routes';
 import { E_RoutesVersion, E_Routes } from './routes/v1/types';
@@ -23,7 +23,7 @@ app.use(`/${E_Routes.api}/${E_RoutesVersion.v1}`, router_v1);
 
 // send back a 404 error for any unknown api request
 app.use((_req, _res, next) => {
-  next(new ApiError(httpStatus.NOT_FOUND, 'Not found'));
+  next(new ApiError(httpStatus.NOT_FOUND, `Not found request: '${_req.url}'`));
 });
 
 // convert error to ApiError, if needed
@@ -36,7 +36,9 @@ export const server = {
   //start server
   start: async (): Promise<void> => {
     app.listen(PORT, () => {
-      logger.info(`⚡️[server]: Server is running at ${PROTOCOL}://${HOST}:${PORT}`);
+      logger.info(
+        `⚡️[server]: Server is running at ${PROTOCOL}://${HOST}:${PORT}`,
+      );
     });
   },
 
@@ -47,28 +49,28 @@ export const server = {
   },
 };
 
-//TODO
-const exitHandler = (): void => {
-  if (server) {
-    server.close();
-  } else {
-    process.exit(1);
-  }
-};
+// //TODO
+// const exitHandler = (): void => {
+//   if (server) {
+//     server.close();
+//   } else {
+//     process.exit(1);
+//   }
+// };
 
-//TODO
-const unexpectedErrorHandler = (error: string): void => {
-  logger.error(error);
-  exitHandler();
-};
+// //TODO
+// const unexpectedErrorHandler = (error: string): void => {
+//   logger.error(error);
+//   exitHandler();
+// };
 
-//TODO
-process.on('uncaughtException', unexpectedErrorHandler);
-process.on('unhandledRejection', unexpectedErrorHandler);
+// //TODO
+// process.on('uncaughtException', unexpectedErrorHandler);
+// process.on('unhandledRejection', unexpectedErrorHandler);
 
-process.on('SIGTERM', () => {
-  logger.info('SIGTERM received');
-  if (server) {
-    server.close();
-  }
-});
+// process.on('SIGTERM', () => {
+//   logger.info('SIGTERM received');
+//   if (server) {
+//     server.close();
+//   }
+// });

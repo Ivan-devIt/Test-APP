@@ -2,14 +2,22 @@
 import { Request, Response, NextFunction } from 'express';
 import mongoose from 'mongoose';
 import httpStatus from 'http-status';
-import { config } from '../../utils/config';
+import { config } from '../../config';
 import { logger } from '../logger';
 import { ApiError } from './ApiError';
 
-export const errorConverter = (err: any, _req: Request, _res: Response, next: NextFunction) => {
+export const errorConverter = (
+  err: any,
+  _req: Request,
+  _res: Response,
+  next: NextFunction,
+) => {
   let error = err;
   if (!(error instanceof ApiError)) {
-    const statusCode = error.statusCode || error instanceof mongoose.Error ? httpStatus.BAD_REQUEST : httpStatus.INTERNAL_SERVER_ERROR;
+    const statusCode =
+      error.statusCode || error instanceof mongoose.Error
+        ? httpStatus.BAD_REQUEST
+        : httpStatus.INTERNAL_SERVER_ERROR;
     const message: string = error.message || `${httpStatus[statusCode]}`;
     error = new ApiError(statusCode, message, false, err.stack);
   }
@@ -17,7 +25,12 @@ export const errorConverter = (err: any, _req: Request, _res: Response, next: Ne
 };
 
 // eslint-disable-next-line no-unused-vars
-export const errorHandler = (err: ApiError, _req: Request, res: Response, _next: NextFunction) => {
+export const errorHandler = (
+  err: ApiError,
+  _req: Request,
+  res: Response,
+  _next: NextFunction,
+) => {
   const { statusCode, message } = err;
 
   //TODO
@@ -38,6 +51,8 @@ export const errorHandler = (err: ApiError, _req: Request, res: Response, _next:
   // if (config.env === 'development') {
   //   logger.error(err);
   // }
+
+  // logger.error(err);
 
   res.status(statusCode).send(response);
 };
