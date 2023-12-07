@@ -1,6 +1,7 @@
 import Joi from 'joi';
 import 'dotenv/config';
 import { E_NodeEnvVariants, E_Protocol } from '../types';
+import { T_EnvsTypes } from './types';
 
 const envVarsSchema = Joi.object()
   .keys({
@@ -49,8 +50,8 @@ const envVarsSchema = Joi.object()
       .example('123_sdadWWS'),
     MONGO_DB_PORT: Joi.number()
       .integer()
-      .min(1000)
-      .max(100000)
+      .min(1001)
+      .max(99999)
       .default(27017)
       .description('Mongo db port')
       .example(27017),
@@ -85,7 +86,10 @@ const envVarsSchema = Joi.object()
   })
   .unknown();
 
-const { value: envVars, error } = envVarsSchema
+const {
+  value: envVars,
+  error,
+}: { value: T_EnvsTypes; error: Joi.ValidationError } = envVarsSchema
   .prefs({ errors: { label: 'key' } })
   .validate(process.env);
 
