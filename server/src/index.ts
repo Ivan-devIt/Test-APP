@@ -1,5 +1,6 @@
 import { server } from './app';
 import { mongoDb } from './db';
+import { logger } from './modules/logger';
 
 const start = async (): Promise<void> => {
   try {
@@ -9,7 +10,8 @@ const start = async (): Promise<void> => {
     //start server
     server.start();
   } catch (err) {
-    console.error(err);
+    server.close();
+    logger.error(err);
   }
 };
 

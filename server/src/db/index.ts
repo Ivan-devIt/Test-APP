@@ -1,19 +1,19 @@
 import * as mongoose from 'mongoose';
 import { config } from '../utils';
+import { logger } from '../modules/logger/logger';
 
 const { DB_CONNECT } = config;
-
-console.log('===DB_CONNECT===', DB_CONNECT);
 
 export const mongoDb = {
   connect: async (): Promise<void> => {
     await mongoose
       .connect(DB_CONNECT)
       .then(() => {
-        console.log('\n  *** connected to mongodb was success *** \n');
+        logger.info('*** connected to mongodb was success ***');
       })
       .catch((err) => {
-        throw new Error(` mongodb connect error: ${err.message}`);
+        logger.error(`mongodb connect error: ${err.message}`);
+        throw new Error(`mongodb connect error: ${err.message}`);
       });
   },
 };

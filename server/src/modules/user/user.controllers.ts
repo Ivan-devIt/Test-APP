@@ -1,24 +1,24 @@
 import { Response, Request } from 'express';
-import { I_User } from './user.types';
-import User from './user.model';
 import { userService } from './user.service';
+import { catchAsync, generateResponse } from '../../utils';
+import httpStatus from 'http-status';
+import { E_ResponseMessage } from '../../types';
 
 class UserController {
-  async getUsers(req: Request, res: Response) {
+  getUsers = catchAsync(async (req: Request, res: Response) => {
     const users = await userService.getUsers();
-
     res.send(users);
-  }
+  });
 
-  async getUserById(req: Request, res: Response) {
+  getUserById = catchAsync(async (req: Request, res: Response) => {
     const userId = req.params['userId'];
 
     if (typeof userId === 'string') {
       const user = await userService.getUserById(userId);
 
-      res.send(user);
+      res.send(generateResponse({ statusCode: httpStatus.OK, data: user, message: E_ResponseMessage.SUCCESS }));
     }
-  }
+  });
 
   async createUser(req: Request, res: Response) {
     console.log('createUser==');
