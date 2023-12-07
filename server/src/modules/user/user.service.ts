@@ -10,12 +10,28 @@ class UserService {
     } catch (err) {}
   }
 
-  async createUser(): Promise<any> {
+  async getUserById(userId: string): Promise<any> {
+    try {
+      console.log('===userId===', userId);
+
+      const user = await User.findOne({ _id: userId });
+
+      console.log('===user===', user);
+
+      return user || [];
+    } catch (err: any) {
+      console.log(err?.message);
+    }
+  }
+
+  async createUser(body: any): Promise<any> {
     try {
       const createdUser = await User.create({ name: 'Ivan', email: 'lorf1991@gmail.com', password: '1234234' });
 
       return createdUser;
-    } catch (err) {}
+    } catch (err: any) {
+      console.log(err?.message);
+    }
   }
 }
 
