@@ -1,1 +1,1 @@
-export * from './swagger.definition';
+export { swaggerDocs } from './swagger';
