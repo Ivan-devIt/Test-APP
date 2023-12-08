@@ -6,4 +6,5 @@ export enum E_Routes {
   api = 'api',
   users = 'users',
   create = 'create',
+  swaggerApi = 'api-docs',
 }

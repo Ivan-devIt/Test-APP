@@ -1,5 +1,5 @@
-import { I_User } from './user.types';
-import { model, Schema } from 'mongoose';
+import { IUserModel, I_UserDoc } from './user.interfaces';
+import { model, Schema, ObjectId } from 'mongoose';
 
 const userSchema: Schema = new Schema(
   {
@@ -10,6 +10,7 @@ const userSchema: Schema = new Schema(
     email: {
       type: String,
       required: true,
+      unique: true,
     },
     password: {
       type: String,
@@ -19,4 +20,12 @@ const userSchema: Schema = new Schema(
   { timestamps: true },
 );
 
-export default model<I_User>('User', userSchema);
+userSchema.static(
+  'isEmailTaken',
+  async function (email: string, excludeUserId: ObjectId): Promise<boolean> {
+    const user = await this.findOne({ email, _id: { $ne: excludeUserId } });
+    return !!user;
+  },
+);
+
+export default model<I_UserDoc, IUserModel>('User', userSchema);

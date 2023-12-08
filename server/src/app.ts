@@ -1,22 +1,47 @@
+import 'module-alias/register';
 import express, { Express } from 'express';
 import cors from 'cors';
-import { json } from 'body-parser';
+import { json, urlencoded } from 'body-parser';
 import { config } from './config';
-import { logger } from './modules/logger/logger';
 import { router_v1 } from './routes';
 import { E_RoutesVersion, E_Routes } from './routes/v1/types';
-import { ApiError, errorConverter, errorHandler } from './modules/errors';
+import { ApiError, errorConverter, errorHandler, logger } from './utils';
 import httpStatus from 'http-status';
+import morgan from 'morgan';
 
 const { PORT, HOST, PROTOCOL } = config;
 
 const app: Express = express();
 
+// Use body parser to read sent json payloads
+app.use(
+  urlencoded({
+    extended: true,
+  }),
+);
 app.use(json());
 
 // enable cors
 app.use(cors());
 app.options('*', cors());
+
+//show request logs
+app.use(morgan('tiny'));
+
+//add public folder
+app.use(express.static('public'));
+
+// add swagger api
+// app.use(
+//   `/${E_Routes.swaggerApi}`,
+//   swaggerUi.serve,
+//   swaggerUi.setup(undefined, {
+//     swaggerOptions: {
+//       url: '/swagger.json',
+//     },
+//   }),
+
+// );
 
 //use v1 api routes
 app.use(`/${E_Routes.api}/${E_RoutesVersion.v1}`, router_v1);

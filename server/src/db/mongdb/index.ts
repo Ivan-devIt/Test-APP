@@ -1,5 +1,5 @@
 import * as mongoose from 'mongoose';
-import { logger } from '../../modules/logger/logger';
+import { logger } from '../../utils/logger/logger';
 import { config } from '../../config';
 
 const { MONGO_DB_CONNECT } = config;

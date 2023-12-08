@@ -1,7 +1,7 @@
 import httpStatus from 'http-status';
-import { ApiError } from '../errors';
+import { ApiError } from '../../utils/errors';
 import User from './user.model';
-import { I_User } from './user.types';
+import { I_User } from './user.interfaces';
 
 class UserService {
   async getUsers(): Promise<I_User[]> {
@@ -13,21 +13,28 @@ class UserService {
     const user = await User.findOne({ _id: userId });
 
     if (!user) {
-      throw new ApiError(httpStatus.NOT_FOUND, `User with id:${userId} is not found`);
+      throw new ApiError(
+        httpStatus.NOT_FOUND,
+        `User with id:${userId} is not found`,
+      );
     }
 
     return user;
   }
 
-  async createUser(body: any): Promise<any> {
-    try {
-      //TODO
-      const createdUser = await User.create({ name: 'Ivan', email: 'lorf1991@gmail.com', password: '1234234' });
+  async createUser(body: I_User): Promise<I_User> {
+    const isEmalExist = await User.isEmailTaken(body.email);
 
-      return createdUser;
-    } catch (err: any) {
-      console.log(err?.message);
+    if (isEmalExist) {
+      throw new ApiError(
+        httpStatus.BAD_REQUEST,
+        `Email: '${body.email}' already taken`,
+      );
     }
+
+    const createdUser = await User.create(body);
+
+    return createdUser;
   }
 }
 

@@ -1,6 +1,6 @@
 import { server } from './app';
 import { mongoDb } from './db/mongdb';
-import { logger } from './modules/logger';
+import { logger } from './utils/logger';
 
 const start = async (): Promise<void> => {
   try {
