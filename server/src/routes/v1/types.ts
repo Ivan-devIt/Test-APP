@@ -3,8 +3,9 @@ export enum E_RoutesVersion {
 }
 
 export enum E_Routes {
+  docs = 'docs',
   api = 'api',
+  healthcheck = 'healthcheck',
   users = 'users',
   create = 'create',
-  swaggerApi = 'api-docs',
 }

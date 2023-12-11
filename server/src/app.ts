@@ -5,7 +5,13 @@ import { json, urlencoded } from 'body-parser';
 import { config } from './config';
 import { router_v1 } from './routes';
 import { E_RoutesVersion, E_Routes } from './routes/v1/types';
-import { ApiError, errorConverter, errorHandler, logger } from './utils';
+import {
+  ApiError,
+  errorConverter,
+  errorHandler,
+  logger,
+  swaggerDocs,
+} from './utils';
 import httpStatus from 'http-status';
 import morgan from 'morgan';
 
@@ -31,20 +37,11 @@ app.use(morgan('tiny'));
 //add public folder
 app.use(express.static('public'));
 
-// add swagger api
-// app.use(
-//   `/${E_Routes.swaggerApi}`,
-//   swaggerUi.serve,
-//   swaggerUi.setup(undefined, {
-//     swaggerOptions: {
-//       url: '/swagger.json',
-//     },
-//   }),
-
-// );
-
-//use v1 api routes
+// use v1 api routes
 app.use(`/${E_Routes.api}/${E_RoutesVersion.v1}`, router_v1);
+
+// add swagger open API
+swaggerDocs(app, PORT);
 
 // send back a 404 error for any unknown api request
 app.use((_req, _res, next) => {

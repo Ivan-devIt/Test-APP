@@ -1,8 +1,8 @@
 import { Response, Request } from 'express';
 import { userService } from './user.service';
-import { catchAsync, generateResponse } from '@/utils';
+import { catchAsync, generateResponse } from '../../utils/';
 import httpStatus from 'http-status';
-import { E_ResponseMessage } from '@/types';
+import { E_ResponseMessage } from '../../types';
 
 export class UserController {
   public getUsers = catchAsync(async (req: Request, res: Response) => {
