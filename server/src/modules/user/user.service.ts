@@ -10,6 +10,8 @@ class UserService {
   }
 
   async getUserById(userId: string): Promise<I_User> {
+    console.log('===userId===', userId);
+
     const user = await User.findOne({ _id: userId }).select('-__v');
 
     if (!user) {

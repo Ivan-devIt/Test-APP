@@ -1,0 +1,76 @@
+# COMPONENTS
+components:
+  #SCHEMAS
+  schemas:
+    User:
+      type: object
+      properties:
+        _id:
+          type: string
+          default: 6569ed6b366b389459cb3c54
+        name:
+          type: string
+          default: Alan
+        email:
+          type: string
+          default: example@gmail.com
+        password:
+          type: string
+          default: 12345678Ff
+        createdAt:
+          type: string
+          default: 2023-12-01T14:27:55.095Z
+        updatedAt:
+          type: string
+          default: 2023-12-01T14:27:55.095Z
+
+    UserResponse:
+      type: object
+      properties:
+        statusCode:
+          type: number
+          default: 400
+        message:
+          type: string
+          default: SUCCESS
+        data:
+          $ref: '#/components/schemas/User'
+
+    UsersResponse:
+      type: object
+      properties:
+        statusCode:
+          type: number
+          default: 400
+        message:
+          type: string
+          default: SUCCESS
+        data:
+          type: object
+          properties:
+            pages:
+              type: number
+              default: 1
+            limit:
+              type: numb
+              default: 10
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/User'
+
+  # RESPONSES
+  responses:
+    GetUserById:
+      description: Get user by id response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UserResponse'
+
+    GetUsers:
+      description: Get users
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UsersResponse'

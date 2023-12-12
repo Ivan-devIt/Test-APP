@@ -9,7 +9,7 @@ const options: swaggerJsdoc.Options = {
   definition: {
     openapi: '3.0.0',
     info: {
-      title: 'REST API Docs',
+      title: 'Events API Docs',
       version,
     },
     components: {
@@ -28,15 +28,15 @@ const options: swaggerJsdoc.Options = {
     ],
   },
 
-  // apis: [
-  //   './src/utils/swagger/v1/routes/*.route.yaml',
-  //   './src/utils/swagger/v1/schemas/*.schema.yaml',
-  // ],
   apis: [
-    './src/routes/v1/index.ts',
-    './src/routes/v1/*.route.ts',
-    './src/modules/**/**.model.ts',
+    './src/utils/swagger/v1/paths/*.paths.yaml',
+    './src/utils/swagger/v1/components/*.components.yaml',
   ],
+  // apis: [
+  //   './src/routes/v1/index.ts',
+  //   './src/routes/v1/*.route.ts',
+  //   './src/modules/**/**.model.ts',
+  // ],
 };
 
 const swaggerSpec = swaggerJsdoc(options);

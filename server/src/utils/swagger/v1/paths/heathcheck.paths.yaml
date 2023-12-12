@@ -10,3 +10,8 @@ tags:
     responses:
       200:
         description: App is up and running
+        content:
+          text/plain:
+            schema:
+              type: string
+              example: 'OK'

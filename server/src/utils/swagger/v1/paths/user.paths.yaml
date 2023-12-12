@@ -1,0 +1,52 @@
+tags:
+  name: Users
+  description: User management and retrieval
+
+# GET USERS
+/api/v1/users:
+  get:
+    tags:
+      - Users
+    summary: Get users
+    description: Searhc result for users
+    responses:
+      200:
+        $ref: '#/components/responses/GetUsers'
+      400:
+        $ref: '#/components/responses/BadRequest'
+      401:
+        $ref: '#/components/responses/Unauthorized'
+      403:
+        $ref: '#/components/responses/Forbidden'
+      404:
+        $ref: '#/components/responses/NotFound'
+      500:
+        $ref: '#/components/responses/ServerError'
+
+# GET USER BY USER ID
+/api/v1/users/{userId}:
+  get:
+    tags:
+      - Users
+    summary: Get user by user Id
+    description: Search result for user by user id
+    parameters:
+      - name: userId
+        in: path
+        description: User id
+        required: true
+        schema:
+          type: string
+    responses:
+      200:
+        $ref: '#/components/responses/GetUserById'
+      400:
+        $ref: '#/components/responses/BadRequest'
+      401:
+        $ref: '#/components/responses/Unauthorized'
+      403:
+        $ref: '#/components/responses/Forbidden'
+      404:
+        $ref: '#/components/responses/NotFound'
+      500:
+        $ref: '#/components/responses/ServerError'

@@ -13,6 +13,7 @@ usersRoute.post(`/${E_Routes.create}`, userController.createUser);
 
 export { usersRoute };
 
+//TODO remove this
 /**
  * @swagger
  * tags:
@@ -34,7 +35,7 @@ export { usersRoute };
  *         description: App is up and running
  */
 
-// *** GET USER BY USER ID
+// *** GET USER BY USERID
 /**
  * @swagger
  * /api/v1/users/{userId}:
@@ -45,15 +46,15 @@ export { usersRoute };
  *     parameters:
  *      - name: userId
  *        in: path
- *        description: The id of the product
+ *        description: User id
  *        required: true
+ *        schema:
+ *          type: string
  *     responses:
- *       200:
+ *       "200":
  *         description: App is up and running
  *         content:
  *          application/json:
  *            schema:
- *              $ref: '#/components/schemas/CreateUserResponse'
+ *              $ref: '#/components/schemas/GetUserByIdResponseSuccess'
  */
-
-// ****** USERS END ******
