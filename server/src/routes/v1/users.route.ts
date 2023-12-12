@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { userController } from '../../modules/user/user.controller';
-import { E_Routes } from './types';
+import { E_Routes } from '../../types';
 
 const usersRoute = Router();
 

@@ -1,21 +1,9 @@
 import { Response, Request, Router } from 'express';
 import { usersRoute } from './users.route';
-import { E_Routes } from './types';
+import { E_Routes } from '../../types';
 
 const mainRouter = Router();
 
-//healthcheck route
-/**
- * @openapi
- * /healthcheck:
- *  get:
- *     tags:
- *     - Healthcheck
- *     description: Responds if the app is up and running
- *     responses:
- *       200:
- *         description: App is up and running
- */
 mainRouter.get(`/${E_Routes.healthcheck}`, (req: Request, res: Response) =>
   res.sendStatus(200),
 );

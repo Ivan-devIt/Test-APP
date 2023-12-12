@@ -4,7 +4,7 @@ import cors from 'cors';
 import { json, urlencoded } from 'body-parser';
 import { config } from './config';
 import { router_v1 } from './routes';
-import { E_RoutesVersion, E_Routes } from './routes/v1/types';
+import { E_RoutesVersion, E_Routes } from './types';
 import {
   ApiError,
   errorConverter,

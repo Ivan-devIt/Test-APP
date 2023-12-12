@@ -1,1 +1,1 @@
-export { swaggerDocs } from './swagger';
+export { swaggerDocs } from './v1';
