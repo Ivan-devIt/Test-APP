@@ -1,0 +1,39 @@
+tags:
+  name: Users
+  description: User management and retrieval
+
+# GET ALL USERS
+/api/v1/users:
+  get:
+    tags:
+      - Users
+    summary: Get all users
+    description: Responds if the app is up and running
+    responses:
+      200:
+        description: Ok
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetUserByIdResponseSuccess'
+
+# GET USER BY USER ID
+/api/v1/users/{userId}:
+  get:
+    tags:
+      - Users
+    description: Responds if the app is up and running
+    parameters:
+      - name: userId
+        in: path
+        description: User id as mingoId
+        required: true
+        schema:
+          type: string
+        responses:
+          200:
+            description: OK
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/GetUserByIdResponseSuccess'

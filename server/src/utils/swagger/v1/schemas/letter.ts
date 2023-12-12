@@ -1,8 +1,8 @@
 /**
- * @openapi
+ * @swagger
  * components:
  *  schemas:
- *    CreateUserInput:
+ *    LetterInput:
  *      type: object
  *      required:
  *        - email
@@ -22,7 +22,8 @@
  *        passwordConfirmation:
  *          type: string
  *          default: stringPassword123
- *    CreateUserResponse:
+ *
+ *    CreateLetterResponse:
  *      type: object
  *      properties:
  *        email:
@@ -35,4 +36,5 @@
  *          type: string
  *        updatedAt:
  *          type: string
+ *
  */

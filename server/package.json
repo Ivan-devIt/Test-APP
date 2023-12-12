@@ -75,6 +75,6 @@
     "typescript": "^5.3.2"
   },
   "_moduleAliases": {
-    "@": "dist"
+    "@": "dist/src/*"
   }
 }

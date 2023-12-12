@@ -1,18 +1,3 @@
-// ****** HEALTCHECK  START ******
-/**
- *@swagger
- * /api/v1/healthcheck:
- *  get:
- *     tags:
- *     - Healthcheck
- *     description: Responds if the app is up and running
- *     responses:
- *       200:
- *         description: App is up and running
- */
-// ****** HEALTCHECK END ******
-
-// ****** USERS START ******
 /**
  * @swagger
  * tags:
@@ -34,7 +19,7 @@
  *         description: App is up and running
  */
 
-// *** GET ALL USERS
+// *** GET USER BY USER ID
 /**
  * @swagger
  * /api/v1/users/{userId}:
@@ -42,9 +27,18 @@
  *     tags:
  *     - Users
  *     description: Responds if the app is up and running
+ *     parameters:
+ *      - name: userId
+ *        in: path
+ *        description: The id of the product
+ *        required: true
  *     responses:
  *       200:
  *         description: App is up and running
+ *         content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/CreateUserResponse'
  */
 
 // ****** USERS END ******

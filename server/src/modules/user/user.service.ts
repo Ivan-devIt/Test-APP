@@ -5,12 +5,12 @@ import { I_User } from './user.interfaces';
 
 class UserService {
   async getUsers(): Promise<I_User[]> {
-    const users: I_User[] = await User.find();
+    const users: I_User[] = await User.find().select('-__v');
     return users;
   }
 
   async getUserById(userId: string): Promise<I_User> {
-    const user = await User.findOne({ _id: userId });
+    const user = await User.findOne({ _id: userId }).select('-__v');
 
     if (!user) {
       throw new ApiError(
