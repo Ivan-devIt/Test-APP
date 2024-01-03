@@ -28,11 +28,6 @@ const options: swaggerJsdoc.Options = {
     ],
   },
 
-  // apis: [
-  //   './src/utils/swagger/v1/paths/*.paths.yaml',
-  //   './src/utils/swagger/v1/components/*.components.yaml',
-  // ],
-
   apis: [
     './packeges/paths/*.paths.yaml',
     './packeges/components/*.components.yaml',

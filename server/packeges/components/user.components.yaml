@@ -52,7 +52,7 @@ components:
               type: number
               default: 1
             limit:
-              type: numb
+              type: number
               default: 10
             data:
               type: array
