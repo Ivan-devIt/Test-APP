@@ -1,4 +1,9 @@
-export { catchAsync, generateResponse, pick } from './helpers';
+export {
+  catchAsync,
+  generateResponse,
+  pick,
+  setRefreshToketToCookies,
+} from './helpers';
 export { logger, morgan } from './logger';
 export { ApiError, errorConverter, errorHandler } from './errors';
 export { swaggerDocs } from './swagger';

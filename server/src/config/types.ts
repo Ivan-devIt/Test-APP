@@ -15,4 +15,8 @@ export type T_EnvsTypes = {
   BASE_USER: string;
   BASE_PASSWORD: string;
   BASE_EMAIL: string;
+  JWT_ACCESS_SECRET: string;
+  JWT_REFRESH_SECRET: string;
+  JWT_ACCESS_LIVE: string;
+  JWT_REFRESH_LIVE: string;
 };

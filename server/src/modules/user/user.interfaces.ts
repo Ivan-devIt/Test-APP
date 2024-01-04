@@ -1,4 +1,5 @@
 import { Document, Types, Model } from 'mongoose';
+import { UserDto } from './user.dto';
 
 export interface I_User {
   name: string;
@@ -19,3 +20,9 @@ export interface I_UserModel extends Model<I_UserDoc> {
 }
 
 export type UpdateUserBody = Partial<I_User>;
+
+export interface I_CreateUserResponse {
+  user: UserDto;
+  refreshToken: string;
+  accessToken: string;
+}

@@ -83,6 +83,20 @@ const envVarsSchema = Joi.object()
       .required()
       .description('Base user email')
       .example('example@gmail.com'),
+    JWT_ACCESS_SECRET: Joi.string()
+      .required()
+      .description('JWT access secret key'),
+    JWT_REFRESH_SECRET: Joi.string()
+      .required()
+      .description('JWT refresh secret key'),
+    JWT_ACCESS_LIVE: Joi.string()
+      .description('Livetime for  JWT_ACCESS_TOKEN')
+      .example('30m')
+      .default('30m'),
+    JWT_REFRESH_LIVE: Joi.string()
+      .description('Livetime for JWT_ACCESS_TOKEN')
+      .example('30d')
+      .default('30d'),
   })
   .unknown();
 
@@ -108,4 +122,8 @@ export const config = {
   BASE_USER: envVars.BASE_USER,
   BASE_PASSWORD: envVars.BASE_PASSWORD,
   BASE_EMAIL: envVars.BASE_EMAIL,
+  JWT_ACCESS_SECRET: envVars.JWT_ACCESS_SECRET,
+  JWT_REFRESH_SECRET: envVars.JWT_REFRESH_SECRET,
+  JWT_ACCESS_LIVE: envVars.JWT_ACCESS_LIVE,
+  JWT_REFRESH_LIVE: envVars.JWT_REFRESH_LIVE,
 };

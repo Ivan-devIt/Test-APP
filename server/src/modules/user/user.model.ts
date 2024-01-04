@@ -1,6 +1,7 @@
 import { model, Schema, ObjectId } from 'mongoose';
 import validator from 'validator';
 import { I_UserModel, I_UserDoc } from './user.interfaces';
+import { E_ShemasNames } from '../../types/';
 
 const userSchema: Schema = new Schema(
   {
@@ -44,4 +45,4 @@ userSchema.static(
   },
 );
 
-export default model<I_UserDoc, I_UserModel>('User', userSchema);
+export default model<I_UserDoc, I_UserModel>(E_ShemasNames.User, userSchema);

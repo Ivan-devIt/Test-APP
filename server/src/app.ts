@@ -1,6 +1,7 @@
 import 'module-alias/register';
 import express, { Express } from 'express';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
 import { json, urlencoded } from 'body-parser';
 import { config } from './config';
 import { router_v1 } from './routes';
@@ -30,6 +31,9 @@ app.use(json());
 // enable cors
 app.use(cors());
 app.options('*', cors());
+
+// enable cookier-parser
+app.use(cookieParser());
 
 //show request logs
 app.use(morgan('tiny'));
